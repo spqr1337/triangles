@@ -1,0 +1,36 @@
+import numpy as np
+
+print("Este programa calcula propriedades de triângulos.")
+print("Use 0 em algum valor caso queira descobrir o valor de algum lado.")
+
+val = []
+txt = "Entre com o valor {}: "
+
+for i in range(3):
+        w = int(input(txt.format(i)))
+        val.append(w)
+val.sort(reverse = True)
+    
+def perimetro():
+    global p
+    p = 0
+    for i in range(3):
+        p += val[i]
+
+def area():
+    s = p/2
+    global ar
+    ar = np.sqrt(s*(s-val[0])*(s-val[1])*(s-val[2]))
+
+if val[2]==0:
+    ang = float(input("Entre com o ângulo formado pelos catetos conhecidos: "))
+    val[2] = np.sqrt((val[0]**2+val[1]**2))-a(2*val[0]*val[1]*np.cos(np.deg2rad(ang)))
+    print("O lado a ser descoberto do triângulo mede: ", val[2])
+if val[0]+val[1]>val[2] and val[1]+val[2]>val[0] and val[0]+val[2]>val[1]:
+    perimetro()
+    area()
+    print("A área do triângulo é de: ", ar)
+    print("O perímetro do triângulo é: ", p)
+else:
+    print("Os valores informados não formam um triângulo.")
+    
